@@ -12,6 +12,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Card from '@mui/material/Card';
 
 // TODO remove, this demo shouldn't need to reset the theme.
 
@@ -29,7 +30,7 @@ export default function Login() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
+      {/* <Container component="main" maxWidth="xs"> */}
         <CssBaseline />
         <Box
           sx={{
@@ -39,6 +40,7 @@ export default function Login() {
             alignItems: 'center',
           }}
         >
+          <Card variant="outline" sx={{ width: "300px", height: "500px"}}>
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
@@ -91,9 +93,114 @@ export default function Login() {
               </Grid>
             </Grid>
           </Box>
+          </Card>
         </Box>
         {/* <Copyright sx={{ mt: 8, mb: 4 }} /> */}
-      </Container>
+      {/* </Container> */}
     </ThemeProvider>
   );
 }
+
+// import * as React from "react";
+// import Box from "@mui/joy/Box";
+// import Card from "@mui/joy/Card";
+// import CardContent from "@mui/joy/CardContent";
+// import Typography from "@mui/joy/Typography";
+// import Button from "@mui/joy/Button";
+// import Input from "@mui/joy/Input";
+// import FormControl from "@mui/joy/FormControl";
+// import FormLabel from "@mui/joy/FormLabel";
+// import Checkbox from "@mui/joy/Checkbox";
+// import Link from "@mui/joy/Link";
+
+// const Login = () => {
+//   return (
+//     <Box
+//       sx={{
+//         display: "flex",
+//         justifyContent: "center",
+//       }}
+//     >
+//       <Card
+//         variant="outlined"
+//         sx={{
+//           display: "flex",
+//           flexDirection: "column",
+//           minHeight: "50vh",
+//           marginTop: 10,
+//           px: 2,
+//         }}
+//       >
+//         <CardContent
+//           sx={{
+//             my: "auto",
+//             py: 2,
+//             pb: 5,
+//             display: "flex",
+//             flexDirection: "column",
+//             gap: 2,
+//             width: 400,
+//             maxWidth: "100%",
+//             mx: "auto",
+//             borderRadius: "sm",
+//             "& form": {
+//               display: "flex",
+//               flexDirection: "column",
+//               gap: 2,
+//             },
+//           }}
+//         >
+//           <Typography level="title-md">Login to your account</Typography>
+//           <Typography>Welcome back</Typography>
+//           <form
+//             sx={{
+//               display: "flex",
+//               flexDirection: "column",
+//               gap: 2,
+//             }}
+//             // onSubmit={(event: React.FormEvent<SignInFormElement>) => {
+//             //   event.preventDefault();
+//             //   const formElements = event.currentTarget.elements;
+//             //   const data = {
+//             //     email: formElements.email.value,
+//             //     password: formElements.password.value,
+//             //     persistent: formElements.persistent.checked,
+//             //   };
+//             //   alert(JSON.stringify(data, null, 2));
+//             // }}
+//           >
+//             <FormControl required>
+//               <FormLabel>Email</FormLabel>
+//               <Input type="email" name="email" />
+//             </FormControl>
+//             <FormControl required>
+//               <FormLabel>Password</FormLabel>
+//               <Input type="password" name="password" />
+//             </FormControl>
+//             <Box
+//               sx={{
+//                 display: "flex",
+//                 justifyContent: "space-between",
+//                 alignItems: "center",
+//               }}
+//             >
+//               <Checkbox
+//                 size="sm"
+//                 label="Remember for 30 days"
+//                 name="persistent"
+//               />
+//             </Box>
+//             <Button type="submit" fullWidth>
+//               Sign in
+//             </Button>
+//             <Link fontSize="sm" href="#replace-with-a-link" fontWeight="lg">
+//               Don't have account? Sign up{" "}
+//             </Link>
+//           </form>
+//         </CardContent>
+//       </Card>
+//     </Box>
+//   );
+// };
+
+// export default Login;

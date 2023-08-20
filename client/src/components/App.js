@@ -21,6 +21,7 @@ import React from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Dashboard from "./Dashboard";
 import Login from "./Login";
+import Signup from "./Signup";
 // import { ChakraProvider } from '@chakra-ui/react'
 
 
@@ -31,6 +32,7 @@ const App = () => {
       <Routes>
         <Route path="/dash" element={<Dashboard />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
       </Routes>
     </BrowserRouter>
     // </ChakraProvider>

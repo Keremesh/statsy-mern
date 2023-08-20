@@ -6,13 +6,13 @@ import { createTheme, ThemeProvider } from "@mui/material";
 
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
+// import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import Container from "@mui/material/Container";
-import Divider from "@mui/material/Divider";
+// import Divider from "@mui/material/Divider";
 import { ExitToApp } from "@mui/icons-material";
 
 const theme = createTheme({
@@ -36,7 +36,8 @@ const buttonStyle = {
   margin: "10px",
   width: "150px",
   borderRadius: '8px',
-  // border: "2px solid",
+  // borderShadow: '0 4px 8px',
+  // border: "1px solid",
   // borderColor: theme.palette.primary.main,
   color: theme.palette.primary.dark,
   // position: "fixed",
