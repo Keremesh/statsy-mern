@@ -1,42 +1,73 @@
 import React from "react";
 // import { Link } from "react-router-dom";
-import { ChakraProvider, Container, Button } from "@chakra-ui/react";
-import { Tabs, TabList, TabPanels, Tab, TabPanel, Avatar, AvatarBadge, AvatarGroup, Heading } from "@chakra-ui/react";
+import NavBar from "./NavBar";
+import {
+  ChakraProvider,
+  Container,
+  Tabs,
+  TabList,
+  TabPanels,
+  Tab,
+  TabPanel,
+  Avatar,
+  AvatarBadge,
+  AvatarGroup,
+  Heading,
+  Icon,
+  Tooltip,
+  Span,
+} from "@chakra-ui/react";
+import { FaUserPlus, FaUsers } from "react-icons/fa";
+import { HiDocumentAdd, HiCollection } from "react-icons/hi";
 
 const Dashboard = () => {
   return (
     <ChakraProvider>
-    <Container>
-      <Avatar name="O K" size='md' src="duck.jpg"/>
-      <Heading as='h2' size='3xl' noOfLines={1}>Hello, Duck Yeah</Heading>
-      <Tabs>
-        <TabList>
-          <Tab>View statsies</Tab>
-          <Tab>Add a statsy</Tab>
-          <Tab>View players</Tab>
-          <Tab>Add a player</Tab>
-        </TabList>
-
-        <TabPanels>
-          <TabPanel>
-            <p>Wow, all statsies!</p>
-          </TabPanel>
-          <TabPanel>
-            <p>Wow, new statsy!</p>
-          </TabPanel>
-          <TabPanel>
-            <p>Wow, all players!</p>
-          </TabPanel>
-          <TabPanel>
-            <p>Wow, new player!</p>
-          </TabPanel>
-        </TabPanels>
-      </Tabs>
-      {/* <Button variant="outlined">View statsies</Button>
-      <Button variant="outlined">Add a statsy</Button>
-      <Button variant="outlined">View players</Button>
-      <Button variant="outlined">Add a player</Button> */}
-    </Container>
+      <NavBar></NavBar>
+      <Container>
+        <Avatar name="O K" size="md" src="duck.jpg" mb={6} />
+        <Heading as="h2" size="xl" noOfLines={1} mb={6}>
+          Hello, Duck Yeah
+        </Heading>
+        <Tabs isFitted variant="enclosed">
+          <TabList mb="2em">
+            <Tooltip label="View all statsies">
+              <Tab>
+                <Icon as={HiCollection} boxSize={8} />
+              </Tab>
+            </Tooltip>
+            <Tooltip label="Add new statsy">
+              <Tab>
+                <Icon as={HiDocumentAdd} boxSize={8} />
+              </Tab>
+            </Tooltip>
+            <Tooltip label="View all players">
+              <Tab>
+                <Icon as={FaUsers} boxSize={8} />
+              </Tab>
+            </Tooltip>
+            <Tooltip label="Add new player">
+              <Tab>
+                <Icon as={FaUserPlus} boxSize={8} />
+              </Tab>
+            </Tooltip>
+          </TabList>
+          <TabPanels>
+            <TabPanel>
+              <p>Wow, all statsies!</p>
+            </TabPanel>
+            <TabPanel>
+              <p>Wow, new statsy!</p>
+            </TabPanel>
+            <TabPanel>
+              <p>Wow, all players!</p>
+            </TabPanel>
+            <TabPanel>
+              <p>Wow, new player!</p>
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
+      </Container>
     </ChakraProvider>
   );
 };
