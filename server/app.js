@@ -1,7 +1,6 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
-
 const path = require("path");
 
 const app = express();
@@ -41,7 +40,10 @@ app.use(express.json()); //aka body parser(old)
 // //paste it below and remove it from routes file keeping only what comes
 // //after the prefix
 // app.use("/api/stuff", stuffRoutes); //these are the routes that frontend uses
-// app.use("/api/auth", userRoutes);
+
+const userRoutes = require("./routes/user");
+
+app.use("/", userRoutes); //api/auth
 
 module.exports = app;
 

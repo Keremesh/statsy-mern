@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-// import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 import {
   ChakraProvider, 
@@ -11,20 +11,20 @@ import {
   Input,
   Stack,
   useColorModeValue,
-  Image,
+  // Image,
   Card,
 } from "@chakra-ui/react";
 //  import Logo from "../auth/logo-login.png";
 
 
 const Signup = () => {
-  const [username, setUsername] = useState('');
+  // const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
 
-  const onChangeUsername = (e) => {
-    setUsername(e.target.value);
-  };
+  // const onChangeUsername = (e) => {
+  //   setUsername(e.target.value);
+  // };
 
   const onChangePassword = (e) => {
     setPassword(e.target.value);
@@ -34,21 +34,23 @@ const Signup = () => {
     setEmail(e.target.value);
   };
 
+  const navigate = useNavigate();
+
   const onSubmit = (e) => {
     e.preventDefault();
     const user = {
-      username,
-      password,
-      email,
+      // username,
+       email,
+       password,
     };
     console.log(user);
     axios
-      .post('http://localhost:2000/users/add', user)
+      .post('http://localhost:3000/signup', user)
       .then((res) => {
         console.log(res.data);
-        setUsername('');
-        setPassword('');
+        // setUsername('');
         setEmail('');
+        setPassword('');
         navigate('/login');
       });
   };
@@ -63,8 +65,8 @@ const Signup = () => {
             </Stack>  
           <Stack spacing={4}>      
             <FormControl onSubmit={onSubmit}>
-            <FormLabel>Username</FormLabel>
-            <Input type="text" value={username} onChange={onChangeUsername} />
+            {/* <FormLabel>Username</FormLabel> */}
+            {/* <Input type="text" value={username} onChange={onChangeUsername} /> */}
             <FormLabel>Email</FormLabel>
             <Input type="email" value={email} onChange={onChangeEmail} />
             <FormLabel>Password</FormLabel>
