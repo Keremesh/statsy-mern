@@ -11,7 +11,9 @@ import {
   Stack,
   Button,
   useColorModeValue,
-  Image, Card, Divider, Center
+  Card, 
+  Divider, 
+  Center
 } from '@chakra-ui/react';
 // import NavBarFalse from '../navbarfalse/NavBarFalse';
 
@@ -33,7 +35,7 @@ const Login = () => {
     event.preventDefault();
     try {
       const response = await axios.post('http://localhost:5001/login', { email, password }); //await server's port, not frontend's port
-      if (response.status == 200) {
+      if (response.status === 200) {
         console.log("Logged in successfully");
         window.localStorage.setItem("token", response.data.token);
         navigate('/');

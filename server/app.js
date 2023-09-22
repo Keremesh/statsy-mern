@@ -46,7 +46,10 @@ app.use(express.json()); //aka body parser(old)
 // // in stuff.js we are using the same prefix api/stuff therefore we
 // //paste it below and remove it from routes file keeping only what comes
 // //after the prefix
-// app.use("/api/stuff", stuffRoutes); //these are the routes that frontend uses
+
+
+const playerRoutes = require('./routes/player')
+app.use("/player", playerRoutes); // api/stuff //these are the routes that frontend uses
 
 const userRoutes = require("./routes/user");
 

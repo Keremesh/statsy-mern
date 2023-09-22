@@ -43,7 +43,7 @@ const Signup = () => {
     };
     console.log(user);
     axios
-      .post('http://localhost:3000/signup', user)
+      .post('http://localhost:5001/signup', user)
       .then((res) => {
         console.log(res.data);
         setUsername('');

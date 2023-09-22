@@ -3,7 +3,10 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Dashboard from "./Dashboard";
 import Login from "./Login";
 import Signup from "./Signup";
-import MiniDrawer from "./MiniDrawer";
+// import MiniDrawer from "./MiniDrawer";
+import Player from "./Player";
+import CreatePlayer from "./CreatePlayer";
+
 // import { ChakraProvider } from '@chakra-ui/react'
 
 
@@ -15,6 +18,8 @@ const App = () => {
         <Route path="/" element={<Dashboard />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/player" element={<Player />} />
+        <Route path="/player/add" element={<CreatePlayer />} />
         {/* <Route path="/drawer" element={<MiniDrawer />} /> */}
 
       </Routes>

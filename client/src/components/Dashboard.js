@@ -1,5 +1,5 @@
 import React from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import NavBar from "./NavBar";
 import {
   ChakraProvider,
@@ -10,12 +10,9 @@ import {
   Tab,
   TabPanel,
   Avatar,
-  AvatarBadge,
-  AvatarGroup,
   Heading,
   Icon,
   Tooltip,
-  Span,
 } from "@chakra-ui/react";
 import { FaUserPlus, FaUsers } from "react-icons/fa";
 import { HiDocumentAdd, HiCollection } from "react-icons/hi";
@@ -48,7 +45,9 @@ const Dashboard = () => {
             </Tooltip>
             <Tooltip label="Add new player">
               <Tab>
-                <Icon as={FaUserPlus} boxSize={8} />
+                <Link to="/addplayer">
+                  <Icon as={FaUserPlus} boxSize={8} />
+                </Link>
               </Tab>
             </Tooltip>
           </TabList>
