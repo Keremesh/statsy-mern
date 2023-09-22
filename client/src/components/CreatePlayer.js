@@ -11,10 +11,13 @@ import {
   Card,
   CardBody,
   FormLabel,
-  Flex,
+  Table,
+  Th,
+  Tr,
   Center,
   Text,
   Box,
+  VStack,
 } from "@chakra-ui/react";
 
 const CreatePlayer = () => {
@@ -34,8 +37,6 @@ const CreatePlayer = () => {
   const onChangeAgent = (e) => {
     setAgent(e.target.value);
   };
-
-  const navigate = useNavigate();
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -76,52 +77,22 @@ const CreatePlayer = () => {
   return (
     <>
       <ChakraProvider>
-      <Flex minH='100vh' align='center' justify='center'>
-        {/* <Container pt={"100px"}> */}
-          <Card w='500px' variant="outline">
+        <VStack align="center" justify="center" spacing={8}>
+          <Card mt={10} w="400px" variant="outline">
             <CardBody>
-              <Heading
-                color="teal"
-                paddingBottom="50px"
-                align="center"
-                size="md"
-              >
+              <Heading color="teal" pb="30px" align="center" size="md">
                 Add New Player
               </Heading>
               <form onSubmit={onSubmit}>
-                {/* <HStack> */}
-                  <FormLabel color="teal">Nickname</FormLabel>
-                  <Input
-                    marginBottom="10px"
-                    id="nickname"
-                    type="text"
-                    value={nickname}
-                    onChange={onChangeNickname}
-                  />
-                {/* </HStack> */}
-                {/* <HStack pt="6"> */}
-                  <FormLabel color="teal">Email</FormLabel>
-                  <Input
-                    marginBottom="10px"
-                    id="email"
-                    type="text"
-                    value={email}
-                    onChange={onChangeEmail}
-                  />
-                {/* </HStack> */}
-                {/* <HStack pt="6"> */}
-                  <FormLabel color="teal">Agent</FormLabel>
-                  <Input
-                    marginBottom="10px"
-                    id="agent"
-                    type="text"
-                    value={agent}
-                    onChange={onChangeAgent}
-                  />
-                {/* </HStack> */}
+                <FormLabel color="teal">Nickname</FormLabel>
+                <Input mb="10px" value={nickname} onChange={onChangeNickname} />
+                <FormLabel color="teal">Email</FormLabel>
+                <Input mb="10px" value={email} onChange={onChangeEmail} />
+                <FormLabel color="teal">Agent</FormLabel>
+                <Input mb="10px" value={agent} onChange={onChangeAgent} />
                 <Center>
                   <Button
-                    marginTop="10px"
+                    mt="10px"
                     colorScheme="teal"
                     variant="outline"
                     onClick={onSubmit}
@@ -135,19 +106,31 @@ const CreatePlayer = () => {
           {/* Display the created player details */}
           {createdPlayer && (
             <div>
-              <Center>
-                <Box>
-                  <Heading size="md">Player created!</Heading>
-                  <Heading size="sm">Created player details:</Heading>
-                  <Text>Nickname: {createdPlayer.nickname}</Text>
-                  <Text>Email: {createdPlayer.email}</Text>
-                  <Text>Agent: {createdPlayer.agent}</Text>
-                </Box>
-              </Center>
+              <Box justify="center" align="center">
+                <Heading mb={3} size="md">
+                  Player created!
+                </Heading>
+                <Heading mb={3} size="sm">
+                  New player details:
+                </Heading>
+                <Table>
+                  <Tr>
+                    <Th>Nickname:</Th>
+                    <Th>{createdPlayer.nickname}</Th>
+                  </Tr>
+                  <Tr>
+                    <Th>Email:</Th>
+                    <Th>{createdPlayer.email}</Th>
+                  </Tr>
+                  <Tr>
+                    <Th>Agent:</Th>
+                    <Th>{createdPlayer.agent}</Th>
+                  </Tr>
+                </Table>
+              </Box>
             </div>
           )}
-        {/* </Container> */}
-        </Flex>
+        </VStack>
       </ChakraProvider>
     </>
   );
