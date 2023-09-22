@@ -2,8 +2,15 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require("path");
-
+const cors = require('cors')
 const app = express();
+
+const corsOptions = {
+    origin: 'http://localhost:3000',
+    credentials: true, 
+  };
+  
+  app.use(cors(corsOptions));
 
 const MONGO_URI = process.env.MONGO_URI;
 // console.log(process.env.MONGO_URI)
