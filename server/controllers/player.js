@@ -1,48 +1,70 @@
 const Player = require("../models/player");
-const fs = require("fs"); // node file system package
+// const fs = require("fs"); // node file system package
+// const TokenGenerator = require("../models/token_generator");
 
-exports.createPlayer = (req, res, next) => {  
-  console.log("req body", req.body);
-  // req.body.player = JSON.parse(req.body.player); //its only for multer and below one too
-  // const url = req.protocol + "://" + req.get("host");
-  //post middleware, SAVE player TO THE DB
-  const player = new Player({
-    nickname: req.body.nickname,
-    email: req.body.email,
-    agent: req.body.agent,
-    // userId: req.body.userId,
-  }); //will receive a JS object that corresponds to the json that was sent by the frontend
-  //send a response otherwise the req will hang
-  player
-    .save()
-    .then(
-      //save method returns a promise, in then block send back a success response
-      () => {
-        res.status(201).json({
-          message: "Player created successfully",
-        });
-      }
-    )
-    .catch((error) => {
-      res.status(400).json({
-        error: error,
+const PlayerController = {
+  Create: async (req, res, next) => {
+    try {
+      const { nickname, email, agent } = req.body;
+      const player = new Player({
+        nickname: nickname,
+        email: email,
+        agent: agent,
       });
-    });
+
+      await player.save();
+      res.status(201).json({ player, message: 'Player created successfully' });
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  },
 };
 
-exports.getOnePlayer = (req, res, next) => {
-  Player.findOne({
-    _id: req.params.id,
-  })
-    .then((player) => {
-      res.status(200).json(player);
-    })
-    .catch((error) => {
-      res.status(404).json({
-        error: error,
-      });
-    });
-};
+
+module.exports = { PlayerController} ;
+
+// exports.createPlayer = (req, res, next) => {  
+//   console.log("req body", req.body);
+//   // req.body.player = JSON.parse(req.body.player); //its only for multer and below one too
+//   // const url = req.protocol + "://" + req.get("host");
+//   //post middleware, SAVE player TO THE DB
+//   const player = new Player({
+//     nickname: req.body.nickname,
+//     email: req.body.email,
+//     agent: req.body.agent,
+//     // userId: req.body.userId,
+//   }); //will receive a JS object that corresponds to the json that was sent by the frontend
+//   //send a response otherwise the req will hang
+//   player
+//     .save()
+//     .then(
+//       //save method returns a promise, in then block send back a success response
+//       () => {
+//         res.status(201).json({
+//           message: "Player created successfully",
+//         });
+//       }
+//     )
+//     .catch((error) => {
+//       res.status(400).json({
+//         error: error,
+//       });
+//     });
+// };
+
+// exports.getOnePlayer = (req, res, next) => {
+//   Player.findOne({
+//     _id: req.params.id,
+//   })
+//     .then((player) => {
+//       res.status(200).json(player);
+//     })
+//     .catch((error) => {
+//       res.status(404).json({
+//         error: error,
+//       });
+//     });
+// };
 
 // exports.modifyPlayer = (req, res, next) => {
 //   let player = new Player({ _id: req.params._id });
@@ -112,16 +134,16 @@ exports.getOnePlayer = (req, res, next) => {
 //   });
 // };
 
-exports.getAllPlayers = (req, res, next) => {
-  //retrieve/return all players in the db
-  Player.find()
-    .then((players) => {
-      res.status(200).json(players);
-    })
-    .catch((error) => {
-      res.status(400).json({
-        error: error,
-      });
-    });
-  // next();
-};
+// exports.getAllPlayers = (req, res, next) => {
+//   //retrieve/return all players in the db
+//   Player.find()
+//     .then((players) => {
+//       res.status(200).json(players);
+//     })
+//     .catch((error) => {
+//       res.status(400).json({
+//         error: error,
+//       });
+//     });
+//   // next();
+// };

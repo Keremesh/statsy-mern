@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 import {
   ChakraProvider,
@@ -11,14 +11,17 @@ import {
   Card,
   CardBody,
   FormLabel,
-  HStack,
+  Flex,
   Center,
+  Text,
+  Box,
 } from "@chakra-ui/react";
 
 const CreatePlayer = () => {
-  const [nickname, setNickname] = useState('');
-  const [email, setEmail] = useState('');
-  const [agent, setAgent] = useState('');
+  const [nickname, setNickname] = useState("");
+  const [email, setEmail] = useState("");
+  const [agent, setAgent] = useState("");
+  const [createdPlayer, setCreatedPlayer] = useState(null); // State to store the created player details
 
   const onChangeNickname = (e) => {
     setNickname(e.target.value);
@@ -38,10 +41,10 @@ const CreatePlayer = () => {
     e.preventDefault();
     const player = {
       nickname,
-      email, 
+      email,
       agent,
     };
-    console.log(player);
+    // console.log(player);
     const token = localStorage.getItem("token");
     if (token) {
       axios
@@ -52,11 +55,15 @@ const CreatePlayer = () => {
           },
         })
         .then((res) => {
-          console.log(res.data);
+          console.log("Response data: ", res.data);
+          if (res.data.player) {
+            setCreatedPlayer(res.data.player); // Store the created player details in state
+          }
           setNickname("");
           setEmail("");
           setAgent("");
-          navigate("/player"); //this can be changed to navigate back to the 'feed' when I add that component
+          // const playerId = res.data.id;
+          // navigate(`/player/${playerId}`); //this can be changed to navigate back to the 'feed' when I add that component
         })
         .catch((error) => {
           console.log(error);
@@ -69,8 +76,9 @@ const CreatePlayer = () => {
   return (
     <>
       <ChakraProvider>
-        <Container pt={"100px"}>
-          <Card variant="outline">
+      <Flex minH='100vh' align='center' justify='center'>
+        {/* <Container pt={"100px"}> */}
+          <Card w='500px' variant="outline">
             <CardBody>
               <Heading
                 color="teal"
@@ -80,41 +88,37 @@ const CreatePlayer = () => {
               >
                 Add New Player
               </Heading>
-
               <form onSubmit={onSubmit}>
-                <HStack>
+                {/* <HStack> */}
                   <FormLabel color="teal">Nickname</FormLabel>
                   <Input
                     marginBottom="10px"
-                    // placeholder="Nickname"
                     id="nickname"
                     type="text"
                     value={nickname}
                     onChange={onChangeNickname}
                   />
-                </HStack>
-                <HStack pt="6">
+                {/* </HStack> */}
+                {/* <HStack pt="6"> */}
                   <FormLabel color="teal">Email</FormLabel>
                   <Input
                     marginBottom="10px"
-                    // placeholder="Email"
                     id="email"
                     type="text"
                     value={email}
                     onChange={onChangeEmail}
                   />
-                </HStack>
-                <HStack pt="6">
+                {/* </HStack> */}
+                {/* <HStack pt="6"> */}
                   <FormLabel color="teal">Agent</FormLabel>
                   <Input
                     marginBottom="10px"
-                    // placeholder="Agent"
                     id="agent"
                     type="text"
                     value={agent}
                     onChange={onChangeAgent}
                   />
-                </HStack>
+                {/* </HStack> */}
                 <Center>
                   <Button
                     marginTop="10px"
@@ -128,7 +132,22 @@ const CreatePlayer = () => {
               </form>
             </CardBody>
           </Card>
-        </Container>
+          {/* Display the created player details */}
+          {createdPlayer && (
+            <div>
+              <Center>
+                <Box>
+                  <Heading size="md">Player created!</Heading>
+                  <Heading size="sm">Created player details:</Heading>
+                  <Text>Nickname: {createdPlayer.nickname}</Text>
+                  <Text>Email: {createdPlayer.email}</Text>
+                  <Text>Agent: {createdPlayer.agent}</Text>
+                </Box>
+              </Center>
+            </div>
+          )}
+        {/* </Container> */}
+        </Flex>
       </ChakraProvider>
     </>
   );

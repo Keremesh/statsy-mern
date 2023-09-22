@@ -45,7 +45,7 @@ const Dashboard = () => {
             </Tooltip>
             <Tooltip label="Add new player">
               <Tab>
-                <Link to="/addplayer">
+                <Link to="/player/add">
                   <Icon as={FaUserPlus} boxSize={8} />
                 </Link>
               </Tab>

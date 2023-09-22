@@ -18,7 +18,7 @@ const App = () => {
         <Route path="/" element={<Dashboard />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/player" element={<Player />} />
+        <Route path="/player/:id" element={<Player />} />
         <Route path="/player/add" element={<CreatePlayer />} />
         {/* <Route path="/drawer" element={<MiniDrawer />} /> */}
 
