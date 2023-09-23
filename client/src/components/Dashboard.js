@@ -40,7 +40,9 @@ const Dashboard = () => {
             </Tooltip>
             <Tooltip label="View all players">
               <Tab>
+              <Link to="/player">
                 <Icon as={FaUsers} boxSize={8} />
+              </Link>
               </Tab>
             </Tooltip>
             <Tooltip label="Add new player">

@@ -18,6 +18,17 @@ const PlayerController = {
       res.status(400).json({ error: error.message });
     }
   },
+
+  Index: async (req, res, next) => { // retrieve all
+    try {
+      const players = await Player.find();
+      res.status(200).json({ players: players });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  },
+
+
 };
 
 

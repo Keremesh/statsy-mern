@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 import {
   ChakraProvider,
-  Container,
   Button,
   Heading,
   Input,
@@ -14,8 +13,8 @@ import {
   Table,
   Th,
   Tr,
+  Td,
   Center,
-  Text,
   Box,
   VStack,
 } from "@chakra-ui/react";
@@ -116,15 +115,15 @@ const CreatePlayer = () => {
                 <Table>
                   <Tr>
                     <Th>Nickname:</Th>
-                    <Th>{createdPlayer.nickname}</Th>
+                    <Td>{createdPlayer.nickname}</Td>
                   </Tr>
                   <Tr>
                     <Th>Email:</Th>
-                    <Th>{createdPlayer.email}</Th>
+                    <Td>{createdPlayer.email}</Td>
                   </Tr>
                   <Tr>
                     <Th>Agent:</Th>
-                    <Th>{createdPlayer.agent}</Th>
+                    <Td>{createdPlayer.agent}</Td>
                   </Tr>
                 </Table>
               </Box>
