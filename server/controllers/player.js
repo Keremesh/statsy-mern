@@ -13,13 +13,14 @@ const PlayerController = {
       });
 
       await player.save();
-      res.status(201).json({ player, message: 'Player created successfully' });
+      res.status(201).json({ player, message: "Player created successfully" });
     } catch (error) {
       res.status(400).json({ error: error.message });
     }
   },
 
-  Index: async (req, res, next) => { // retrieve all
+  Index: async (req, res, next) => {
+    // retrieve all
     try {
       const players = await Player.find();
       res.status(200).json({ players: players });
@@ -28,13 +29,64 @@ const PlayerController = {
     }
   },
 
+  GetOne: async (req, res, next) => {
+    try {
+      const playerId = req.params.id;
+      const player = await Player.findById(playerId);
+      if (!player) {
+        return res.status(404).json({ error: "Player not found" });
+      }
+      res.status(200).json({ player: player });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  },
 
+  Update: async (req, res, next) => {
+    try {
+      const playerId = req.params.id;
+      const { nickname, email, agent } = req.body;
+      const updatedPlayer = {
+        nickname: nickname,
+        email: email,
+        agent: agent,
+      };
+
+      const player = await Player.findByIdAndUpdate(playerId, updatedPlayer, {
+        new: true,
+      });
+      if (!player) {
+        return res.status(404).json({ error: "Player not found" });
+      }
+
+      res
+        .status(200)
+        .json({ player: player, message: "Player updated successfully" });
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  },
+
+  Delete: async (req, res, next) => { // delete one by ID
+    try {
+      const playerId = req.params.id;
+      const player = await Player.findByIdAndDelete(playerId);
+      if (!player) {
+        return res.status(404).json({ message: 'Player not found' });
+      }
+
+      res.status(200).json({ message: 'Player deleted successfully' });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  },
 };
 
 
-module.exports = { PlayerController} ;
 
-// exports.createPlayer = (req, res, next) => {  
+module.exports = { PlayerController };
+
+// exports.createPlayer = (req, res, next) => {
 //   console.log("req body", req.body);
 //   // req.body.player = JSON.parse(req.body.player); //its only for multer and below one too
 //   // const url = req.protocol + "://" + req.get("host");
@@ -110,7 +162,6 @@ module.exports = { PlayerController} ;
 //       });
 //     });
 // };
-
 
 // exports.deletePlayer = (req, res, next) => {
 //   Player.findOne({ _id: req.params.id }).then((player) => {

@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
+// import { ObjectId } from 'mongodb';
+
+// import PlayerModal from "./PlayerModal";
 import {
   ChakraProvider,
   Heading,
@@ -12,10 +16,16 @@ import {
   Tbody,
   TableContainer,
   Box,
+  Button,
+  Stack,
+  Link,
 } from "@chakra-ui/react";
 
 const PlayerList = () => {
   const [players, setPlayers] = useState([]);
+  // const [selectedPlayer, setSelectedPlayer] = useState(null); // Track the selected player
+  // const [isModalOpen, setIsModalOpen] = useState(false); // Track whether the modal is open
+
   // const [token, setToken] = useState(
   // window.localStorage.getItem("token")
   // );
@@ -31,6 +41,7 @@ const PlayerList = () => {
         })
         .then((res) => {
           console.log("Response data: ", res.data);
+          
           // const data = response.data;
           // window.localStorage.setItem("token", data.token);
           // setToken(window.localStorage.getItem("token"));
@@ -44,6 +55,17 @@ const PlayerList = () => {
     }
   }, []);
 
+  // const handlePlayerClick = (player) => {
+  //   console.log('Player clicked:', player._id);
+  // };
+
+  const navigate = useNavigate(); // Get the navigate function
+
+  const handlePlayerClick = (player) => {
+    // Programmatically navigate to the player's detail page
+    navigate(`/player/${player._id}`);
+  };
+
   return (
     <ChakraProvider>
       <Container>
@@ -52,25 +74,37 @@ const PlayerList = () => {
         </Heading>
         <Box overflowX="auto">
           <TableContainer>
-          <Table>
-            <Thead>
-              <Tr>
-                <Th>Nickname</Th>
-                <Th>Email</Th>
-                <Th>Agent</Th>
-              </Tr>
-            </Thead>
-            <Tbody>
-              {players.map((player) => (
-                <Tr key={player._id}>
-                  <Td>{player.nickname}</Td>
-                  <Td>{player.email}</Td>
-                  <Td>{player.agent}</Td>
+            <Table>
+              <Thead>
+                <Tr>
+                  <Th>Nickname</Th>
+                  <Th>Email</Th>
+                  <Th>Agent</Th>
+                  <Th></Th>
                 </Tr>
-              ))}
-            </Tbody>
-          </Table>
-        </TableContainer>        
+              </Thead>
+              <Tbody>
+                {/* {console.log(players)}; */}
+                {players.map((player) => {
+                    // console.log('Mapping player:', player);
+                  return (
+                  <Tr key={player._id}>
+                    <Td>{player.nickname}</Td>
+                    <Td>{player.email}</Td>
+                    <Td>{player.agent}</Td>
+                    <Td><Button onClick={() => handlePlayerClick(player)}>View</Button>
+                      {/* <Stack spacing={4} direction="row" align="center"> */}
+                      {/* {console.log(player._id)} */}
+
+                      {/* <Link to={`/player/${player._id}`} onClick={() => handlePlayerClick(player)}>View</Link> */}
+                      {/* </Stack> */}
+                    </Td>
+                  </Tr>
+                );
+                  })}
+              </Tbody>
+            </Table>
+          </TableContainer>
         </Box>
       </Container>
     </ChakraProvider>

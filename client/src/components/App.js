@@ -4,7 +4,7 @@ import Dashboard from "./Dashboard";
 import Login from "./Login";
 import Signup from "./Signup";
 // import MiniDrawer from "./MiniDrawer";
-import Player from "./Player";
+import PlayerDetail from "./PlayerDetail";
 import CreatePlayer from "./CreatePlayer";
 import PlayerList from "./PlayerList";
 
@@ -19,7 +19,7 @@ const App = () => {
         <Route path="/" element={<Dashboard />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        {/* <Route path="/player/:id" element={<Player />} /> */}
+        <Route path="/player/:id" element={<PlayerDetail />} />
         <Route path="/player/add" element={<CreatePlayer />} />
         <Route path="/player" element={<PlayerList />} />
         {/* <Route path="/drawer" element={<MiniDrawer />} /> */}

@@ -1,6 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import NavBar from "./NavBar";
+import PlayerList from "./PlayerList";
+import CreatePlayer from "./CreatePlayer";
+
 import {
   ChakraProvider,
   Container,
@@ -61,10 +64,12 @@ const Dashboard = () => {
               <p>Wow, new statsy!</p>
             </TabPanel>
             <TabPanel>
-              <p>Wow, all players!</p>
+              {/* <p>Wow, all players!</p> */}
+              <PlayerList />
             </TabPanel>
             <TabPanel>
               <p>Wow, new player!</p>
+              <CreatePlayer />
             </TabPanel>
           </TabPanels>
         </Tabs>

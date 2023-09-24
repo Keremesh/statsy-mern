@@ -13,7 +13,7 @@ const { PlayerController } = require("../controllers/player");
 
 router.get("/", auth, PlayerController.Index);
 router.post("/add", auth, PlayerController.Create); 
-// router.get("/one", auth, PlayerController.getOnePlayer);
+router.get("/:id", auth, PlayerController.GetOne);
 
 
 
