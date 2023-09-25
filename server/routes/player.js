@@ -14,7 +14,8 @@ const { PlayerController } = require("../controllers/player");
 router.get("/", auth, PlayerController.Index);
 router.post("/add", auth, PlayerController.Create); 
 router.get("/:id", auth, PlayerController.GetOne);
-
+router.put("/:id", auth,  PlayerController.Update); //multer here
+router.delete("/:id", auth, PlayerController.Delete);
 
 
 module.exports = router;
