@@ -57,36 +57,50 @@ const PlayerDetail = () => {
   };
 
   const handleDeleteClick = () => {
-    if (window.confirm(`Are you sure you want to delete ${player.nickname}?`)) {
-      axios
-        .delete(`http://localhost:5001/player/${player._id}`)
-        .then(() => {
-          console.log("Player deleted successfully");
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+    const token = window.localStorage.getItem("token");
+    if (token) {
+      if (
+        window.confirm(`Are you sure you want to delete ${player.nickname}?`)
+      ) {
+        axios
+          .delete(`http://localhost:5001/player/${player._id}`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
+          .then(() => {
+            console.log("Player deleted successfully");
+            navigate("/player");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } else {
+        console.log("No token found");
+      }
     }
   };
 
   const handleUpdateClick = () => {
     const token = window.localStorage.getItem("token");
     if (token) {
-    axios
-      .put(`http://localhost:5001/player/${player._id}`, updatedPlayer, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((res) => {
-        console.log("Player updated successfully");
-        setUpdatedPlayer({ ...updatedPlayer, _id:res.data.player._id });
-        navigate(`/player/${res.data.player._id}`);
-        setEditMode(false);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+      axios
+        .put(`http://localhost:5001/player/${player._id}`, updatedPlayer, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          console.log("Player updated successfully");
+          setPlayer(res.data.player);
+          // setUpdatedPlayer({ ...updatedPlayer, _id:res.data.player._id });
+          // navigate(`/player/${res.data.player._id}`);
+          window.alert("Player Updated!");
+          setEditMode(false);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     } else {
       console.log("No token found");
     }
@@ -98,19 +112,69 @@ const PlayerDetail = () => {
     setUpdatedPlayer((prevState) => ({
       ...prevState,
       [name]: value,
-     }));
+    }));
+  };
+
+  const handleReturnClick = () => {
+    navigate("/");
   };
 
   return (
-    <>
       <ChakraProvider>
-        <Container pt={"100px"}>
-          {player && (
-            <>
-              <Heading>Player details</Heading>
-              <Box marginTop="20px">
-                {editMode ? (
-                  <div>
+        <Container maxW="xl" mt={5}>
+          {player && (       
+              <Box borderWidth="1px" borderRadius="lg" p={4} marginTop="20px">
+                <Heading size="md" mb={4}>
+                  Player details
+                </Heading>
+                <Box>
+              <Text fontWeight="bold">Nickname:</Text>
+              <Text>{player.nickname}</Text>
+            </Box>
+            <Box mt={2}>
+              <Text fontWeight="bold">Email:</Text>
+              <Text>{player.email}</Text>
+            </Box>
+            <Box mt={2}>
+              <Text fontWeight="bold">Agent:</Text>
+              <Text>{player.agent}</Text>
+            </Box>
+            <Button
+              mt={4}
+              onClick={handleEditClick}
+              colorScheme="teal"
+              size="sm"
+            >
+              Update
+            </Button>
+            <Button
+              mt={4}
+              onClick={handleDeleteClick}
+              colorScheme="red"
+              size="sm"
+            >
+              Delete
+            </Button>
+            <Button
+              mt={4}
+              onClick={handleReturnClick}
+              colorScheme="teal"
+              size="sm"
+            >
+              Return to dashboard
+            </Button>
+                  {/* <Text >Nickname: {player.nickname}</Text>
+                  <Text>Email: {player.email}</Text>
+                  <Text>Agent: {player.agent}</Text>
+                  <Button onClick={handleEditClick}>Update</Button>
+                  <Button onClick={handleDeleteClick} colorScheme="red">
+                    Delete
+                  </Button>
+                  <Button onClick={handleReturnClick} colorScheme="teal">
+                    Return to list
+                  </Button> */}
+                {editMode && (
+                  <Box mt={4}>
                     <form>
                       <FormLabel color="teal">Nickname</FormLabel>
                       <Input
@@ -119,77 +183,37 @@ const PlayerDetail = () => {
                         value={updatedPlayer.nickname}
                         onChange={handleInputChange}
                       />
-                      <FormLabel color="teal">Email</FormLabel>
+                      <FormLabel color="teal" mt={2}>Email</FormLabel>
                       <Input
                         mb="10px"
                         name="email"
                         value={updatedPlayer.email}
                         onChange={handleInputChange}
                       />
-                      <FormLabel color="teal">Agent</FormLabel>
+                      <FormLabel color="teal" mt={2}>Agent</FormLabel>
                       <Input
                         mb="10px"
                         name="agent"
                         value={updatedPlayer.agent}
                         onChange={handleInputChange}
                       />
-                      <Center>
+                      <Center mt={4}>
                         <Button
-                          mt="10px"
                           colorScheme="teal"
                           variant="outline"
                           onClick={handleUpdateClick}
+                          size="sm"
                         >
                           Save
                         </Button>
                       </Center>
                     </form>
-                  </div>
-                ) : (
-                  <div>
-                    <Text>Nickname: {player.nickname}</Text>
-                    <Text>Email: {player.email}</Text>
-                    <Text>Agent: {player.agent}</Text>
-                    <Button onClick={handleEditClick}>Update</Button>
-                    <Button onClick={handleDeleteClick} colorScheme="red">
-                      Delete
-                    </Button>
-                  </div>
+                  </Box>
                 )}
               </Box>
-
-              {/* Display the created player details */}
-              {/* {createdPlayer && (
-            <div>
-              <Box justify="center" align="center">
-                <Heading mb={3} size="md">
-                  Player created!
-                </Heading>
-                <Heading mb={3} size="sm">
-                  New player details:
-                </Heading>
-                <Table>
-                  <Tr>
-                    <Th>Nickname:</Th>
-                    <Td>{createdPlayer.nickname}</Td>
-                  </Tr>
-                  <Tr>
-                    <Th>Email:</Th>
-                    <Td>{createdPlayer.email}</Td>
-                  </Tr>
-                  <Tr>
-                    <Th>Agent:</Th>
-                    <Td>{createdPlayer.agent}</Td>
-                  </Tr>
-                </Table>
-              </Box>
-            </div>
-          )} */}
-            </>
           )}
         </Container>
       </ChakraProvider>
-    </>
   );
 };
 

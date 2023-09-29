@@ -16,7 +16,10 @@ import {
   Td,
   Center,
   Box,
+  HStack,
   VStack,
+  Link,
+  Spacer,
 } from "@chakra-ui/react";
 
 const CreatePlayer = () => {
@@ -76,8 +79,9 @@ const CreatePlayer = () => {
   return (
     <>
       <ChakraProvider>
-        <VStack align="center" justify="center" spacing={8}>
-          <Card mt={10} w="400px" variant="outline">
+      {/* <Link href='/'>Back to dashboard</Link> */}
+        <HStack spacing={6}>
+          <Card mt={10} w="300px" variant="outline">
             <CardBody>
               <Heading color="teal" pb="30px" align="center" size="md">
                 Add New Player
@@ -102,9 +106,11 @@ const CreatePlayer = () => {
               </form>
             </CardBody>
           </Card>
+          {/* <Spacer /> */}
           {/* Display the created player details */}
           {createdPlayer && (
             <div>
+              {/* <VStack w="400px" spacing={4}> */}
               <Box justify="center" align="center">
                 <Heading mb={3} size="md">
                   Player created!
@@ -127,9 +133,10 @@ const CreatePlayer = () => {
                   </Tr>
                 </Table>
               </Box>
+              {/* </VStack> */}
             </div>
           )}
-        </VStack>
+        </HStack>
       </ChakraProvider>
     </>
   );

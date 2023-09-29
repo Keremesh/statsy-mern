@@ -17,7 +17,7 @@ import {
   TableContainer,
   Box,
   Button,
-  Stack,
+  // Stack,
   Link,
 } from "@chakra-ui/react";
 
@@ -58,22 +58,21 @@ const PlayerList = () => {
   //   console.log('Player clicked:', player._id);
   // };
 
-  const navigate = useNavigate(); // Get the navigate function
-
+  const navigate = useNavigate(); 
   const handlePlayerClick = (player) => {
-    // Programmatically navigate to the player's detail page
     navigate(`/player/${player._id}`);
   };
 
   return (
     <ChakraProvider>
       <Container>
+        {/* <Link href='/'>Back to dashboard</Link> */}
         <Heading color="teal" paddingBottom="50px" align="center" size="md">
           Players
         </Heading>
         <Box overflowX="auto">
           <TableContainer>
-            <Table>
+            <Table size="sm">
               <Thead>
                 <Tr>
                   <Th>Nickname</Th>

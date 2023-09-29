@@ -25,12 +25,13 @@ const Dashboard = () => {
     <ChakraProvider>
       <NavBar></NavBar>
       <Container>
-        <Avatar name="O K" size="md" src="duck.jpg" mb={6} />
+        {/* <Avatar name="O K" size="md" src="duck.jpg" mb={6} />
         <Heading as="h2" size="xl" noOfLines={1} mb={6}>
           Hello, Duck Yeah
-        </Heading>
-        <Tabs isFitted variant="enclosed">
-          <TabList mb="2em">
+        </Heading> */}
+        <Tabs variant="enclosed" size='lg'> 
+        {/* orientation="vertical"  */}
+          <TabList>
             <Tooltip label="View all statsies">
               <Tab>
                 <Icon as={HiCollection} boxSize={8} />
@@ -43,32 +44,30 @@ const Dashboard = () => {
             </Tooltip>
             <Tooltip label="View all players">
               <Tab>
-              <Link to="/player">
+              {/* <Link to="/player"> */}
                 <Icon as={FaUsers} boxSize={8} />
-              </Link>
+              {/* </Link> */}
               </Tab>
             </Tooltip>
             <Tooltip label="Add new player">
               <Tab>
-                <Link to="/player/add">
+                {/* <Link to="/player/add"> */}
                   <Icon as={FaUserPlus} boxSize={8} />
-                </Link>
+                {/* </Link> */}
               </Tab>
             </Tooltip>
           </TabList>
-          <TabPanels>
-            <TabPanel>
+          <TabPanels >
+            <TabPanel >
               <p>Wow, all statsies!</p>
             </TabPanel>
             <TabPanel>
               <p>Wow, new statsy!</p>
             </TabPanel>
             <TabPanel>
-              {/* <p>Wow, all players!</p> */}
               <PlayerList />
             </TabPanel>
             <TabPanel>
-              <p>Wow, new player!</p>
               <CreatePlayer />
             </TabPanel>
           </TabPanels>
