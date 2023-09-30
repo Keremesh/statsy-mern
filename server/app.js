@@ -47,13 +47,15 @@ app.use(express.json()); //aka body parser(old)
 // //paste it below and remove it from routes file keeping only what comes
 // //after the prefix
 
+const userRoutes = require("./routes/user");
+app.use("/", userRoutes); 
 
 const playerRoutes = require('./routes/player')
-app.use("/player", playerRoutes); // api/stuff //these are the routes that frontend uses
+app.use("/player", playerRoutes); 
 
-const userRoutes = require("./routes/user");
+const statsyRoutes = require('./routes/statsy')
+app.use("/statsy", statsyRoutes); 
 
-app.use("/", userRoutes); //api/auth
 
 module.exports = app;
 

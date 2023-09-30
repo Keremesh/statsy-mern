@@ -7,6 +7,8 @@ import Signup from "./Signup";
 import PlayerDetail from "./PlayerDetail";
 import CreatePlayer from "./CreatePlayer";
 import PlayerList from "./PlayerList";
+import CreateStatsy from "./CreateStatsy";
+
 
 // import { ChakraProvider } from '@chakra-ui/react'
 
@@ -22,6 +24,8 @@ const App = () => {
         <Route path="/player/:id" element={<PlayerDetail />} />
         <Route path="/player/add" element={<CreatePlayer />} />
         <Route path="/player" element={<PlayerList />} />
+        <Route path="/statsy/add" element={<CreateStatsy />} />
+
         {/* <Route path="/drawer" element={<MiniDrawer />} /> */}
 
       </Routes>

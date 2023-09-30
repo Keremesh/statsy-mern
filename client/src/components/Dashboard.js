@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import NavBar from "./NavBar";
 import PlayerList from "./PlayerList";
 import CreatePlayer from "./CreatePlayer";
+import CreateStatsy from "./CreateStatsy";
 
 import {
   ChakraProvider,
@@ -63,6 +64,7 @@ const Dashboard = () => {
             </TabPanel>
             <TabPanel>
               <p>Wow, new statsy!</p>
+              <CreateStatsy />
             </TabPanel>
             <TabPanel>
               <PlayerList />
