@@ -94,7 +94,7 @@ const CreateStatsy = () => {
           setSelectedPlayer("");
           //   setUserId("");
           // const StatsyId = res.data.id;
-          // navigate(`/Statsy/${StatsyId}`); 
+          // navigate(`/Statsy/${StatsyId}`); //this can be changed to navigate back to the 'feed' when I add that component
         })
         .catch((error) => {
             if (error.response) {
@@ -187,10 +187,10 @@ const CreateStatsy = () => {
                   <Th>Player:</Th>
                   <Td>{createdStatsy.player}</Td>
                 </Tr>
-                {/* <Tr>
+                <Tr>
                     <Th>Created by user:</Th>
-                    <Td>{createdStatsy.user_id}</Td>
-                  </Tr> */}
+                    <Td>{createdStatsy.createdBy}</Td>
+                  </Tr>
               </Table>
             </Box>
           </div>
