@@ -8,8 +8,8 @@ module.exports = (req, res, next) => {
     console.log("Decoded Token:", decodedToken);
     const userId = decodedToken.userId;
     console.log("User ID:", userId);
-    const userName = decodedToken.name; // User's name
-    console.log("Username:", userName);
+    // const userName = decodedToken.name; // User name undefined
+    // console.log("Username:", userName);
 
     if (req.body.userId && req.body.userId !== userId) {
       throw 'Invalid user ID';

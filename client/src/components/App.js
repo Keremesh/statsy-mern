@@ -3,19 +3,15 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Dashboard from "./Dashboard";
 import Login from "./Login";
 import Signup from "./Signup";
-// import MiniDrawer from "./MiniDrawer";
 import PlayerDetail from "./PlayerDetail";
 import CreatePlayer from "./CreatePlayer";
 import PlayerList from "./PlayerList";
 import CreateStatsy from "./CreateStatsy";
-
-
-// import { ChakraProvider } from '@chakra-ui/react'
-
+import StatsyList from "./StatsyList";
+import StatsyDetail from "./StatsyDetail";
 
 const App = () => {
   return (
-    // <ChakraProvider>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Dashboard />} />
@@ -25,12 +21,10 @@ const App = () => {
         <Route path="/player/add" element={<CreatePlayer />} />
         <Route path="/player" element={<PlayerList />} />
         <Route path="/statsy/add" element={<CreateStatsy />} />
-
-        {/* <Route path="/drawer" element={<MiniDrawer />} /> */}
-
+        <Route path="/statsy" element={<StatsyList />} />
+        <Route path="/statsy/:id" element={<StatsyDetail />} />
       </Routes>
     </BrowserRouter>
-    // </ChakraProvider>
   );
 }
 

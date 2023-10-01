@@ -4,6 +4,7 @@ import NavBar from "./NavBar";
 import PlayerList from "./PlayerList";
 import CreatePlayer from "./CreatePlayer";
 import CreateStatsy from "./CreateStatsy";
+import StatsyList from "./StatsyList";
 
 import {
   ChakraProvider,
@@ -61,6 +62,7 @@ const Dashboard = () => {
           <TabPanels >
             <TabPanel >
               <p>Wow, all statsies!</p>
+              <StatsyList />
             </TabPanel>
             <TabPanel>
               <p>Wow, new statsy!</p>

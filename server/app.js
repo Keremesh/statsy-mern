@@ -13,11 +13,9 @@ const corsOptions = {
   app.use(cors(corsOptions));
 
 const MONGO_URI = process.env.MONGO_URI;
-// console.log(process.env.MONGO_URI)
 
 mongoose
   .connect(MONGO_URI)
-    // ("mongodb+srv://ker:CkqEbw7l8QfxHbId@cluster0.visugbd.mongodb.net/?retryWrites=true&w=majority")
   .then(() => {
     console.log("Successfully connected to MongoDB Atlas!");
   })

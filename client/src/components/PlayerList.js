@@ -40,7 +40,7 @@ const PlayerList = () => {
           },
         })
         .then((res) => {
-          console.log("Response data: ", res.data);
+          console.log("PlayerList res data: ", res.data);
           // const data = response.data;
           // window.localStorage.setItem("token", data.token);
           // setToken(window.localStorage.getItem("token"));

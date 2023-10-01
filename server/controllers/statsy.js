@@ -33,7 +33,7 @@ const StatsyController = {
         player: existingNickname,
         createdBy: createdByObjectId,
       });
-      console.log("-1 userid", statsy);
+      // console.log("-1 userid", statsy);
 
       await statsy.save();
 
@@ -42,6 +42,17 @@ const StatsyController = {
       res.status(400).json({ error: error.message });
     }
   },
+
+  Index: async (req, res, next) => {
+    // retrieve all
+    try {
+      const statsys = await Statsy.find();
+      res.status(200).json({ statsys: statsys });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  },
+
 };
 
 module.exports = StatsyController;
