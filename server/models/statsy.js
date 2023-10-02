@@ -8,8 +8,6 @@ const statsySchema = new mongoose.Schema({
   player: { type: String, required: true},
 //   createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true},
   createdBy: { type: String, required: true},
-
-// //   user_id: { type: String},
 });
 
 // statsySchema.plugin(uniqueValidator);

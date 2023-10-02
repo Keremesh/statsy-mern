@@ -44,10 +44,67 @@ const StatsyController = {
   },
 
   Index: async (req, res, next) => {
-    // retrieve all
     try {
       const statsys = await Statsy.find();
       res.status(200).json({ statsys: statsys });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  },
+
+  GetOne: async (req, res, next) => {
+    try {
+      const statsyId = req.params.id;
+      const statsy = await Statsy.findById(statsyId);
+      if (!statsy) {
+        return res.status(404).json({ error: "Statsy not found" });
+      }
+      res.status(200).json({ statsy: statsy });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  },
+
+  Update: async (req, res, next) => {
+    try {
+      const statsyId = req.params.id;
+      // const { amount, date_added, player, createdBy } = req.body;
+      // const updatedStatsy = {
+      //   amount: amount,
+      //   date_added: date_added,
+      //   player: player,
+      //   createdBy: createdBy,
+      // };
+
+      const { amount } = req.body;
+      const updatedStatsy = {
+        amount: amount,
+      };
+
+      const statsy = await Statsy.findByIdAndUpdate(statsyId, updatedStatsy, {
+        new: true,
+      });
+      if (!statsy) {
+        return res.status(404).json({ error: "Statsy not found" });
+      }
+
+      res
+        .status(200)
+        .json({ statsy: statsy, message: "Statsy updated successfully" });
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  },
+
+  Delete: async (req, res, next) => { 
+    try {
+      const statsyId = req.params.id;
+      const statsy = await Statsy.findByIdAndDelete(statsyId);
+      if (!statsy) {
+        return res.status(404).json({ message: 'Statsy not found' });
+      }
+
+      res.status(200).json({ message: 'statsy deleted successfully' });
     } catch (error) {
       res.status(500).json({ error: error.message });
     }

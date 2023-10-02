@@ -18,10 +18,10 @@ const StatsyDetail = () => {
   const [statsy, setStatsy] = useState(null);
   const [editMode, setEditMode] = useState(false);
   const [updatedStatsy, setUpdatedStatsy] = useState({
-    amount: "",
-    date_added: "",
-    player: "",
-    createdBy: "",
+    amount: 0,
+    // date_added: "",
+    // player: "",
+    // createdBy: "",
   });
 
   const navigate = useNavigate();
@@ -37,8 +37,9 @@ const StatsyDetail = () => {
           },
         })
         .then((res) => {
-          // console.log("Response data: ", res.data);
+          console.log("SD Response data: ", res.data);
           setStatsy(res.data.statsy);
+          console.log("SD Statsy:", statsy);
         })
         .catch((error) => {
           console.log(error);
@@ -50,20 +51,19 @@ const StatsyDetail = () => {
 
   const handleEditClick = () => {
     setEditMode(true);
+    console.log("SD Updated Statsy:", updatedStatsy);
     setUpdatedStatsy({
       amount: statsy.amount,
-      date_added: statsy.date_added,
-      player: statsy.player,
-      createdBy: statsy.createdBy,
+    //   date_added: statsy.date_added,
+    //   player: statsy.player,
+    //   createdBy: statsy.createdBy,
     });
   };
 
   const handleDeleteClick = () => {
     const token = window.localStorage.getItem("token");
     if (token) {
-      if (
-        window.confirm(`Are you sure you want to delete ${statsy._id}?`)
-      ) {
+      if (window.confirm(`Are you sure you want to delete ${statsy._id}?`)) {
         axios
           .delete(`http://localhost:5001/statsy/${statsy._id}`, {
             headers: {
@@ -84,6 +84,8 @@ const StatsyDetail = () => {
   };
 
   const handleUpdateClick = () => {
+    console.log("SD Update button clicked");
+
     const token = window.localStorage.getItem("token");
     if (token) {
       axios
@@ -108,8 +110,17 @@ const StatsyDetail = () => {
     }
   };
 
-  const handleInputChange = (e) => {
+//   const handleInputChange = (e) => {
+//     const { name, value } = e.target;
+//     const parsedValue = name === 'amount' ? parseInt(value, 10) : value;
+//     setUpdatedStatsy((prevState) => ({
+//       ...prevState,
+//       [name]: parsedValue,
+//     }));
+
+const handleInputChange = (e) => {
     const { name, value } = e.target;
+    console.log(`SD Updating ${name} to ${value}`);
     setUpdatedStatsy((prevState) => ({
       ...prevState,
       [name]: value,
@@ -121,14 +132,14 @@ const StatsyDetail = () => {
   };
 
   return (
-      <ChakraProvider>
-        <Container maxW="xl" mt={5}>
-          {statsy && (       
-              <Box borderWidth="1px" borderRadius="lg" p={4} marginTop="20px">
-                <Heading size="md" mb={4}>
-                  Statsy details
-                </Heading>
-                <Box>
+    <ChakraProvider>
+      <Container maxW="xl" mt={5}>
+        {statsy && (
+          <Box borderWidth="1px" borderRadius="lg" p={4} marginTop="20px">
+            <Heading size="md" mb={4}>
+              Statsy details
+            </Heading>
+            <Box>
               <Text fontWeight="bold">Amount:</Text>
               <Text>{statsy.amount}</Text>
             </Box>
@@ -168,7 +179,7 @@ const StatsyDetail = () => {
             >
               Return to dashboard
             </Button>
-                  {/* <Text >Nickname: {player.nickname}</Text>
+            {/* <Text >Nickname: {player.nickname}</Text>
                   <Text>Email: {player.email}</Text>
                   <Text>Agent: {player.agent}</Text>
                   <Button onClick={handleEditClick}>Update</Button>
@@ -178,54 +189,62 @@ const StatsyDetail = () => {
                   <Button onClick={handleReturnClick} colorScheme="teal">
                     Return to list
                   </Button> */}
-                {editMode && (
-                  <Box mt={4}>
-                    <form>
-                      <FormLabel color="teal">Amount</FormLabel>
-                      <Input
-                        mb="10px"
-                        name="amount"
-                        value={updatedStatsy.amount}
-                        onChange={handleInputChange}
-                      />
-                      <FormLabel color="teal" mt={2}>Date added</FormLabel>
-                      <Input
-                        mb="10px"
-                        name="date_added"
-                        value={updatedStatsy.date_added}
-                        onChange={handleInputChange}
-                      />
-                      <FormLabel color="teal" mt={2}>Player</FormLabel>
-                      <Input
-                        mb="10px"
-                        name="player"
-                        value={updatedStatsy.player}
-                        onChange={handleInputChange}
-                      />
-                       {/* <FormLabel color="teal" mt={2}>Created by</FormLabel>
-                      <Input
-                        mb="10px"
-                        name="createdBy"
-                        value={updatedStatsy.createdBy}
-                        onChange={handleInputChange}
-                      /> */}
-                      <Center mt={4}>
-                        <Button
-                          colorScheme="teal"
-                          variant="outline"
-                          onClick={handleUpdateClick}
-                          size="sm"
-                        >
-                          Save
-                        </Button>
-                      </Center>
-                    </form>
-                  </Box>
-                )}
+            {editMode && (
+              <Box mt={4}>
+                <form>
+                  <FormLabel color="teal">Amount</FormLabel>
+                  <Input
+                    mb="10px"
+                    name="amount"
+                    type="number"
+                    value={updatedStatsy.amount}
+                    onChange={handleInputChange}
+                  />
+                  {/* <FormLabel color="teal" mt={2}>
+                    Date added
+                  </FormLabel>
+                  <Input
+                    mb="10px"
+                    name="date_added"
+                    type="date"
+                    value={updatedStatsy.date_added}
+                    onChange={handleInputChange}
+                  />
+                  <FormLabel color="teal" mt={2}>
+                    Player
+                  </FormLabel>
+                  <Input
+                    mb="10px"
+                    name="player"
+                    value={updatedStatsy.player}
+                    onChange={handleInputChange}
+                  /> */}
+                  {/* <FormLabel color="teal" mt={2}>
+                    Created by
+                  </FormLabel>
+                  <Input
+                    mb="10px"
+                    name="createdBy"
+                    value={updatedStatsy.createdBy}
+                    onChange={handleInputChange}
+                  /> */}
+                  <Center mt={4}>
+                    <Button
+                      colorScheme="teal"
+                      variant="outline"
+                      onClick={handleUpdateClick}
+                      size="sm"
+                    >
+                      Save
+                    </Button>
+                  </Center>
+                </form>
               </Box>
-          )}
-        </Container>
-      </ChakraProvider>
+            )}
+          </Box>
+        )}
+      </Container>
+    </ChakraProvider>
   );
 };
 

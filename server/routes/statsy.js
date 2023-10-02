@@ -8,7 +8,6 @@ router.get("/", auth, StatsyController.Index);
 router.post("/add", auth, StatsyController.Create); 
 router.get("/:id", auth, StatsyController.GetOne);
 router.put("/:id", auth,  StatsyController.Update); //multer here
-router.delete("/:id", auth, StatsyController.Delete);
-
+// router.delete("/:id", auth, StatsyController.Delete);
 
 module.exports = router;

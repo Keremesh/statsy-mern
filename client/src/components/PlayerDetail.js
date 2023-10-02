@@ -107,7 +107,6 @@ const PlayerDetail = () => {
   };
 
   const handleInputChange = (e) => {
-    // Update the 'updatedPlayer' state as the user types in the input fields
     const { name, value } = e.target;
     setUpdatedPlayer((prevState) => ({
       ...prevState,

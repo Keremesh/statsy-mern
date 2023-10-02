@@ -11,6 +11,7 @@ import {
   CardBody,
   FormLabel,
   Table,
+  Thead,
   Th,
   Tr,
   Td,
@@ -21,7 +22,7 @@ import {
 } from "@chakra-ui/react";
 
 const CreateStatsy = () => {
-  const [amount, setAmount] = useState("");
+  const [amount, setAmount] = useState(0);
   const [players, setPlayers] = useState([]);
   const [selectedPlayer, setSelectedPlayer] = useState("");
   const [date_added, setDateAdded] = useState("");
@@ -48,6 +49,8 @@ const CreateStatsy = () => {
     } else {
         console.error("No token found");
       }
+      return () => {
+      };
   }, []);
 
   const onChangeAmount = (e) => {
@@ -66,10 +69,10 @@ const CreateStatsy = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     console.log("1- Selected Player:", selectedPlayer); 
-    const formattedDate = new Date(date_added).toLocaleDateString();
+    // const formattedDate = new Date(date_added).toLocaleDateString();
     const statsy = {
-      amount,
-      date_added: formattedDate,
+      amount: parseInt(amount),
+      date_added,
       player: selectedPlayer,
       //   user_id,
     };
@@ -89,7 +92,7 @@ const CreateStatsy = () => {
             setCreatedStatsy(res.data.statsy); 
             console.log("4- Created Statsy:", res.data.statsy);
           }
-          setAmount("");
+          setAmount(0);
           setDateAdded("");
           setSelectedPlayer("");
           //   setUserId("");
@@ -155,7 +158,8 @@ const CreateStatsy = () => {
                   mt="10px"
                   colorScheme="teal"
                   variant="outline"
-                  onClick={onSubmit}
+                  // onClick={onSubmit}
+                  type="submit"
                 >
                   Submit
                 </Button>
@@ -175,6 +179,7 @@ const CreateStatsy = () => {
                 New statsy details:
               </Heading>
               <Table>
+                <Thead> 
                 <Tr>
                   <Th>Amount:</Th>
                   <Td>{createdStatsy.amount}</Td>
@@ -191,6 +196,7 @@ const CreateStatsy = () => {
                     <Th>Created by user:</Th>
                     <Td>{createdStatsy.createdBy}</Td>
                   </Tr>
+                  </Thead>
               </Table>
             </Box>
           </div>
