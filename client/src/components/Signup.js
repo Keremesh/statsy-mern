@@ -43,7 +43,8 @@ const Signup = () => {
     };
     console.log(user);
     axios
-      .post('http://localhost:5001/signup', user)
+      // .post('http://localhost:5001/signup', user)
+      .post('https://statsy-mern-deploy.onrender.com/signup', user)
       .then((res) => {
         console.log(res.data);
         setUsername('');

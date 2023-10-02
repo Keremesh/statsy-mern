@@ -35,7 +35,7 @@ const Login = () => {
     event.preventDefault();
     try {
       // const response = await axios.post('http://localhost:5001/login', { email, password }); //await server's port, not frontend's port
-      const response = await axios.post('http://statsy-mern-deploy.onrender.com/login', { email, password }); //await server's port, not frontend's port
+      const response = await axios.post('https://statsy-mern-deploy.onrender.com/login', { email, password }); //await server's port, not frontend's port
       if (response.status === 200) {
         console.log("Logged in successfully");
         window.localStorage.setItem("token", response.data.token);
