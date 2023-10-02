@@ -15,7 +15,7 @@ import {
   TableContainer,
   Box,
   Button,
-  Link,
+//   Link,
 } from "@chakra-ui/react";
 
 const StatsyList = () => {

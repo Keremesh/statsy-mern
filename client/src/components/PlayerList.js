@@ -18,7 +18,7 @@ import {
   Box,
   Button,
   // Stack,
-  Link,
+  // Link,
 } from "@chakra-ui/react";
 
 const PlayerList = () => {

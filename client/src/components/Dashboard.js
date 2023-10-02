@@ -14,8 +14,8 @@ import {
   TabPanels,
   Tab,
   TabPanel,
-  Avatar,
-  Heading,
+  // Avatar,
+  // Heading,
   Icon,
   Tooltip,
 } from "@chakra-ui/react";

@@ -17,9 +17,9 @@ import {
   Center,
   Box,
   HStack,
-  VStack,
-  Link,
-  Spacer,
+  // VStack,
+  // Link,
+  // Spacer,
 } from "@chakra-ui/react";
 
 const CreatePlayer = () => {
