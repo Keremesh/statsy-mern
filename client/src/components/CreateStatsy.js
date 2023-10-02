@@ -38,7 +38,7 @@ const CreateStatsy = () => {
           },
       })
       .then((res) => {
-        console.log("Player data:", res.data); 
+        // console.log("Player data:", res.data); 
         // const playersData = res.data.players.map((player) => player);
         // setPlayers(playersData);
         setPlayers(res.data.players);
@@ -58,7 +58,7 @@ const CreateStatsy = () => {
   };
 
   const onChangePlayer = (e) => {
-    console.log('0- SelectedPlayer', e.target.value);
+    // console.log('0- SelectedPlayer', e.target.value);
     setSelectedPlayer(e.target.value);
   };
 
@@ -68,15 +68,14 @@ const CreateStatsy = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log("1- Selected Player:", selectedPlayer); 
+    // console.log("1- Selected Player:", selectedPlayer); 
     // const formattedDate = new Date(date_added).toLocaleDateString();
     const statsy = {
       amount: parseInt(amount),
       date_added,
       player: selectedPlayer,
-      //   user_id,
     };
-    console.log("2- Statsy so far:", statsy);
+    // console.log("2- Statsy so far:", statsy);
     const token = localStorage.getItem("token");
     if (token) {
       axios
@@ -87,10 +86,10 @@ const CreateStatsy = () => {
           },
         })
         .then((res) => {
-          console.log("3- Response data: ", res.data);
+          // console.log("3- Response data: ", res.data);
           if (res.data.statsy) {
             setCreatedStatsy(res.data.statsy); 
-            console.log("4- Created Statsy:", res.data.statsy);
+            // console.log("4- Created Statsy:", res.data.statsy);
           }
           setAmount(0);
           setDateAdded("");
@@ -135,7 +134,6 @@ const CreateStatsy = () => {
                 onChange={onChangeDateAdded}
               />
               <FormLabel color="teal">Player</FormLabel>
-
               {/* <Input
                   mb="10px"
                   value={player_id}

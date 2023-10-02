@@ -68,17 +68,12 @@ const StatsyController = {
   Update: async (req, res, next) => {
     try {
       const statsyId = req.params.id;
-      // const { amount, date_added, player, createdBy } = req.body;
-      // const updatedStatsy = {
-      //   amount: amount,
-      //   date_added: date_added,
-      //   player: player,
-      //   createdBy: createdBy,
-      // };
-
-      const { amount } = req.body;
+      const { amount, date_added, player, createdBy } = req.body;
       const updatedStatsy = {
         amount: amount,
+        date_added: date_added,
+        player: player,
+        createdBy: createdBy,
       };
 
       const statsy = await Statsy.findByIdAndUpdate(statsyId, updatedStatsy, {

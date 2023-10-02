@@ -19,9 +19,9 @@ const StatsyDetail = () => {
   const [editMode, setEditMode] = useState(false);
   const [updatedStatsy, setUpdatedStatsy] = useState({
     amount: 0,
-    // date_added: "",
-    // player: "",
-    // createdBy: "",
+    date_added: "",
+    player: "",
+    createdBy: "",
   });
 
   const navigate = useNavigate();
@@ -37,9 +37,9 @@ const StatsyDetail = () => {
           },
         })
         .then((res) => {
-          console.log("SD Response data: ", res.data);
+        //   console.log("SD Response data: ", res.data);
           setStatsy(res.data.statsy);
-          console.log("SD Statsy:", statsy);
+        //   console.log("SD Statsy:", statsy);
         })
         .catch((error) => {
           console.log(error);
@@ -51,12 +51,12 @@ const StatsyDetail = () => {
 
   const handleEditClick = () => {
     setEditMode(true);
-    console.log("SD Updated Statsy:", updatedStatsy);
+    // console.log("SD Updated Statsy:", updatedStatsy);
     setUpdatedStatsy({
       amount: statsy.amount,
-    //   date_added: statsy.date_added,
-    //   player: statsy.player,
-    //   createdBy: statsy.createdBy,
+      date_added: statsy.date_added,
+      player: statsy.player,
+      createdBy: statsy.createdBy,
     });
   };
 
@@ -84,8 +84,7 @@ const StatsyDetail = () => {
   };
 
   const handleUpdateClick = () => {
-    console.log("SD Update button clicked");
-
+    // console.log("SD Update button clicked");
     const token = window.localStorage.getItem("token");
     if (token) {
       axios
@@ -110,17 +109,9 @@ const StatsyDetail = () => {
     }
   };
 
-//   const handleInputChange = (e) => {
-//     const { name, value } = e.target;
-//     const parsedValue = name === 'amount' ? parseInt(value, 10) : value;
-//     setUpdatedStatsy((prevState) => ({
-//       ...prevState,
-//       [name]: parsedValue,
-//     }));
-
 const handleInputChange = (e) => {
     const { name, value } = e.target;
-    console.log(`SD Updating ${name} to ${value}`);
+    // console.log(`SD Updating ${name} to ${value}`);
     setUpdatedStatsy((prevState) => ({
       ...prevState,
       [name]: value,
@@ -200,7 +191,7 @@ const handleInputChange = (e) => {
                     value={updatedStatsy.amount}
                     onChange={handleInputChange}
                   />
-                  {/* <FormLabel color="teal" mt={2}>
+                  <FormLabel color="teal" mt={2}>
                     Date added
                   </FormLabel>
                   <Input
@@ -218,8 +209,8 @@ const handleInputChange = (e) => {
                     name="player"
                     value={updatedStatsy.player}
                     onChange={handleInputChange}
-                  /> */}
-                  {/* <FormLabel color="teal" mt={2}>
+                  />
+                  <FormLabel color="teal" mt={2}>
                     Created by
                   </FormLabel>
                   <Input
@@ -227,7 +218,7 @@ const handleInputChange = (e) => {
                     name="createdBy"
                     value={updatedStatsy.createdBy}
                     onChange={handleInputChange}
-                  /> */}
+                  />
                   <Center mt={4}>
                     <Button
                       colorScheme="teal"
