@@ -1,5 +1,5 @@
-# finance-logbook
-Transactions tracker 
+# statsy-mern
+Social gaming score tracker
 
 
 # Statsy - MVP
